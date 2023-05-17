@@ -5,19 +5,73 @@
 # - Encuentre la palabra más larga.
 # Todo esto utilizando un único bucle.
 
+import re
 
 def main(texto:str):
-  palabras = texto.split(' ')
-  oraciones = texto.split('.')
-  print(len(palabras))
-  print(oraciones)
-  print(len(oraciones))
+  palabras = texto.replace("\n", " ").split(" ")
+  
+  words_count = 0
+  oraciones_count = 0
+  letras_count = 0
+  palabra_larga = ''
+  
+  for palabra in palabras:
+    
+    if len(palabra) == 0:
+      continue
+    
+    print(palabra)
+    
+    if '.' in palabra:
+      oraciones_count += 1
+    
+    palabra_actual = re.sub(r"[^\w]", "", palabra)
+    
+    letras_count += len(palabra_actual)
+    words_count += 1
+    palabra_larga = palabra if len(palabra_actual) >= len(palabra_larga) else palabra_larga
+  
+  print(f'Oraciones: {oraciones_count}')
+  print(f'Palabra larga: {palabra_larga}')
+  print(f'Cantidad palabrar: {words_count}')
+  print(f'Longitud promedio: {letras_count/words_count}')
 
 
 if __name__ == '__main__':
 
-  textoOriginal = '''En estos tiempos en los que pasamos gran parte de nuestras vidas en línea, es más importante que nunca mantener nuestra información personal y nuestras cuentas de redes sociales seguras. Y hablando de redes sociales, Instagram hace todo lo posible para mantener la seguridad de sus usuarios. Sin embargo, nunca se sabe quién puede estar tratando de acceder a tu cuenta sin tu conocimiento. Por suerte, hay maneras de detectar si alguien ha entrado en tu cuenta de Instagram sin tu permiso. A continuación, te mostramos cómo hacerlo. Instagram te permite ver todas las actividades recientes en tu cuenta. Desde el menú principal, dirígete a tu perfil y toca el icono de las tres líneas en la esquina superior derecha. Luego, ingresa en Configuración y, en la parte inferior, accede a la opción de Actividad de inicio de sesión.'''
+  textoOriginal = """
+Nos encontramos en un
+periodo de guerra civil. Las
+naves espaciales rebeldes,
+atacando desde una base
+oculta, han logrado su
+primera victoria contra
+el malvado Imperio
+Galáctico.
 
-  textoCorto = 'En estos tiempos en los que pasamos gran parte. de nuestras vidas en línea.'
+Durante la batalla, los
+espías rebeldes han
+conseguido apoderarse de
+los planos secretos del
+arma total y definitiva del
+Imperio, la ESTRELLA
+DE LA MUERTE,
+una estación espacial
+acorazada, llevando en sí
+potencia suficiente para
+destruir a un planeta
+entero.
 
-  main(textoCorto)
+Perseguida por los
+siniestros agentes del
+Imperio, la Princesa Leia
+vuela hacia su patria, a
+bordo de su nave espacial,
+llevando consigo los
+planos robados, que
+pueden salvar a su pueblo
+y devolver la libertad a la
+galaxia....
+"""
+
+  main(textoOriginal)
