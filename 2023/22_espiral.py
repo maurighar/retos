@@ -9,3 +9,20 @@
 #  ║╚═╝║
 #  ╚═══╝
 
+def espiral(tamano):
+    dibujo = ''
+    for alto in range(1, tamano+1):
+        if alto == 1:
+            dibujo += f'═'
+        else:
+            dibujo += f'║'
+        
+    print(dibujo)
+    
+    
+def draw_spiral(size):
+    pass
+    
+if __name__ == '__main__':
+    espiral(6)
+    
